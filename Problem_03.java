@@ -1,4 +1,4 @@
-package Problems;
+
 
 /**
  * Given an integer array nums, return an array answer such that answer[i] is
@@ -15,6 +15,7 @@ package Problems;
  * Input: nums = [-1,1,0,-3,3]
  * Output: [0,0,9,0,0]
  */
+
 public class Problem_03 {
     public int[] productExceptSelf(int[] nums) {
         int[] result = new int[nums.length]; // create an array of the same size as the input array
