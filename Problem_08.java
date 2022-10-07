@@ -37,4 +37,10 @@ class Problem_08 {
         return result;
 
     }
+
+    public static void main(String[] args) {
+        Problem_08 obj = new Problem_08();
+        int[] nums = { 2, 3, -2, 4 }; // expected output = 6
+        System.out.println(obj.maxProduct(nums));
+    }
 }
