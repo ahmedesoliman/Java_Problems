@@ -1,5 +1,4 @@
 
-
 /**
  * Given an integer array nums, return an array answer such that answer[i] is
  * equal to the product of all the elements of nums except nums[i].
@@ -17,7 +16,7 @@
  */
 
 public class Problem_03 {
-    public int[] productExceptSelf(int[] nums) {
+    public static int[] productExceptSelf(int[] nums) {
         int[] result = new int[nums.length]; // create an array of the same size as the input array
 
         int prefix = 1; // initialize the prefix to 1
@@ -25,7 +24,7 @@ public class Problem_03 {
             result[i] = prefix; // set the result at the current index to the prefix
             prefix *= nums[i]; // multiply the prefix by the current value in the array
         }
-        
+
         int postfix = 1; // initialize the postfix to 1
         for (int i = nums.length; i > 0; i--) { // loop through the array backwards
             result[i - 1] *= postfix; // multiply the result at the current index by the postfix
@@ -33,5 +32,14 @@ public class Problem_03 {
         }
         return result;
 
+    }
+
+    public static void main(String[] args) { // main method
+        // Problem_03 p = new Problem_03();
+        int[] nums = { 1, 2, 3, 4 }; 
+        int[] result = productExceptSelf(nums);
+        for (int i = 0; i < result.length; i++) {
+            System.out.print(result[i] + " ");
+        }
     }
 }
