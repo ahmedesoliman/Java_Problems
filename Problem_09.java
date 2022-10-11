@@ -1,9 +1,9 @@
 import java.util.*;
 
 /**
- * Given an integer array nums, return all the triplets [nums[i], nums[j],
- * nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] +
- * nums[k] == 0.
+ * Given an integer array nums, return all the triplets [nums[i], nums[right],
+ * nums[left]] such that i != right, i != left, and right != left, and nums[i] + nums[right] +
+ * nums[left] == 0.
  * 
  * Notice that the solution set must not contain duplicate triplets.
  * 
@@ -39,31 +39,41 @@ public class Problem_09 {
         // Hint: Sort the array first
         // Hint: Use a for loop to iterate through the array
         // Hint: Use a while loop to iterate through the array
-        List<List<Integer>> result = new ArrayList<>();
-        int[] resultArray;
         Arrays.sort(nums);
-
+ 
+        ArrayList<List<Integer>> result = new ArrayList<>();
+     
         for (int i = 0; i < nums.length; i++) {
-            int left = i + 1;
-            int right = nums.length - 1;
-            while (left < right) {
-                int sum = nums[i] + nums[left] + nums[right];
-                if (sum == 0) {
-                    resultArray = new int[] { nums[i], nums[left], nums[right] };
-                    // System.out.println(Arrays.toString(resultArray));
-                    left++;
-                    right--;
-                } else if (sum < 0) {
-                    left++;
-                } else {
-                    right--;
-                }
-
-                result.add(Arrays.asList(nums[i], nums[left], nums[right]));
+            int right = i + 1;
+            int left = nums.length - 1;
+     
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
             }
-
-            return result;
+     
+            while (right < left) {
+                if (left < nums.length - 1 && nums[left] == nums[left + 1]) {
+                    left--;
+                    continue;
+                }
+     
+                if (nums[i] + nums[right] + nums[left] > 0) {
+                    left--;
+                } else if (nums[i] + nums[right] + nums[left] < 0) {
+                    right++;
+                } else {
+                    ArrayList<Integer> temp = new ArrayList<>();
+                    temp.add(nums[i]);
+                    temp.add(nums[right]);
+                    temp.add(nums[left]);
+                    result.add(temp);
+                    right++;
+                    left--;
+                }
+            }
         }
+     
+        return result;
     }
 
     public static void main(String[] args) {
